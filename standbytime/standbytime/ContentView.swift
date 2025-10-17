@@ -40,17 +40,17 @@ struct ContentView: View {
                         .foregroundColor(colorScheme == .dark ? .white : .black)
         }
         .onAppear {
-            // Timer kullanarak saati güncelle
+            // Update the time using the timer
             let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
                 currentTime = Date()
             }
-            // Timer'ın çalışmasını sağlamak için run loop
+            // Run loop to make the timer work
             RunLoop.current.add(timer, forMode: .common)
         }
         }
     }
 
-    // Saati HH:mm:ss formatında almak için yardımcı fonksiyon
+    // Helper function to get the time in HH:mm format
     func getFormattedTime() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
