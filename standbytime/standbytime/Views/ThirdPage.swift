@@ -13,14 +13,14 @@ struct ThirdPage: View {
     let date = Date()
     @State private var isBouncing = false
     @State private var currentTime = Date()
-    @State private var backgroundImageUrl: URL?
+    @State private var backgroundImage: UIImage?
     @State private var showingSettings = false
-    @StateObject private var googlePhotosService = GooglePhotosService()
+    @StateObject private var localPhotosService = LocalPhotosService()
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            if let url = backgroundImageUrl {
-                AsyncPhotoBackgroundView(imageUrl: url)
+            if let image = backgroundImage {
+                LocalPhotoBackgroundView(uiImage: image)
             } else {
                 Color.black
                     .ignoresSafeArea()
@@ -71,13 +71,12 @@ struct ThirdPage: View {
             }
             .onAppear {
                 setupTimers()
-                if googlePhotosService.isSignedIn {
-                    fetchRandomPhoto()
-                }
+                localPhotosService.requestAuthorization()
+                fetchRandomPhoto()
             }
             .sheet(isPresented: $showingSettings) {
                 SettingsView()
-                    .environmentObject(googlePhotosService)
+                    .environmentObject(localPhotosService)
             }
         }
     }
@@ -98,18 +97,17 @@ struct ThirdPage: View {
         
         // Timer to shuffle background photo
         let photoTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
-            if googlePhotosService.isSignedIn {
-                fetchRandomPhoto()
-            }
+            fetchRandomPhoto()
         }
         RunLoop.current.add(photoTimer, forMode: .common)
     }
     
     private func fetchRandomPhoto() {
-        let category = UserDefaults.standard.string(forKey: "selectedGooglePhotosCategory") ?? "Nature"
-        googlePhotosService.search(category: category) { url in
+        let userSelectedCategory = UserDefaults.standard.string(forKey: "selectedGooglePhotosCategory") ?? "Pets"
+        
+        localPhotosService.search(category: userSelectedCategory) { image in
             DispatchQueue.main.async {
-                self.backgroundImageUrl = url
+                self.backgroundImage = image
             }
         }
     }

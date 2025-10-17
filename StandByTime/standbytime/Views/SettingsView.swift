@@ -1,45 +1,21 @@
 import SwiftUI
-import GoogleSignInSwift
 
 struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var googlePhotosService: GooglePhotosService
-    
-    @State private var selectedCategory: String = UserDefaults.standard.string(forKey: "selectedGooglePhotosCategory") ?? "Nature"
-    
-    let categories = ["Pets", "Cities", "Nature"]
+    @EnvironmentObject var localPhotosService: LocalPhotosService
     
     var body: some View {
         NavigationView {
             Form {
-                if googlePhotosService.isSignedIn {
-                    Section(header: Text("Photo Categories")) {
-                        Picker("Select Category", selection: $selectedCategory) {
-                            ForEach(categories, id: \.self) { category in
-                                Text(category)
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .onChange(of: selectedCategory) { newCategory in
-                            UserDefaults.standard.set(newCategory, forKey: "selectedGooglePhotosCategory")
-                        }
-                    }
-                    
-                    Section {
+                Section(header: Text("Photos")) {
+                    if !localPhotosService.isAuthorized {
                         Button(action: {
-                            googlePhotosService.signOut()
-                            presentationMode.wrappedValue.dismiss()
+                            localPhotosService.requestAuthorization()
                         }) {
-                            Text("Sign Out of Google Photos")
-                                .foregroundColor(.red)
+                            Text("Authorize Photo Library Access")
                         }
-                    }
-                } else {
-                    Section(header: Text("Account")) {
-                        GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .dark, style: .wide, state: .normal)) {
-                            googlePhotosService.signIn()
-                        }
-                        .padding()
+                    } else {
+                        Text("Photo library access authorized.")
                     }
                 }
             }

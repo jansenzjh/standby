@@ -44,6 +44,7 @@ Carthage/Build
 # Swift Package Manager (SPM)
 .swiftpm/
 Package.resolved
+.build/
 
 # fastlane
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
@@ -51,13 +52,25 @@ Package.resolved
 # For more information about the recommended setup visit:
 # https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
 fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
 
 # Playgrounds
 *.playground/
 *.playgroundbook/
+timeline.xctimeline
+playground.xcworkspace
 
 # Crashlytics
 Crashlytics/
+
+# Accio dependency management
+Dependencies/
+.accio/
+
+# Code Injection
+iOSInjectionProject/
 
 # Sensitive information (e.g., API keys, certificates)
 # It's best practice to manage sensitive information outside of version control.

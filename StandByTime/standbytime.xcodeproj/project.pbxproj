@@ -22,10 +22,10 @@
 		60A8683B2A72EB6800CED841 /* ThirdPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A8683A2A72EB6800CED841 /* ThirdPage.swift */; };
 		60A8683D2A72F79200CED841 /* SquadaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60A8683C2A72F79200CED841 /* SquadaOne-Regular.ttf */; };
 		9AE8ED4B2E9F48B500F6474E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED4A2E9F48B500F6474E /* SettingsView.swift */; };
-		9AE8ED4D2E9F760500F6474E /* AsyncPhotoBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED4C2E9F760500F6474E /* AsyncPhotoBackgroundView.swift */; };
-		9AE8ED552E9F885700F6474E /* GooglePhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED542E9F885700F6474E /* GooglePhotosService.swift */; };
 		9AE8ED582E9F8C2300F6474E /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 9AE8ED572E9F8C2300F6474E /* GoogleSignIn */; };
 		9AE8ED5A2E9F8C2300F6474E /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9AE8ED592E9F8C2300F6474E /* GoogleSignInSwift */; };
+		9AE8ED5C2EA29CEB00F6474E /* LocalPhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED5B2EA29CEB00F6474E /* LocalPhotosService.swift */; };
+		9AE8ED5E2EA29CFB00F6474E /* LocalPhotoBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED5D2EA29CFB00F6474E /* LocalPhotoBackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,8 +46,8 @@
 		60A8683A2A72EB6800CED841 /* ThirdPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPage.swift; sourceTree = "<group>"; };
 		60A8683C2A72F79200CED841 /* SquadaOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SquadaOne-Regular.ttf"; sourceTree = "<group>"; };
 		9AE8ED4A2E9F48B500F6474E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		9AE8ED4C2E9F760500F6474E /* AsyncPhotoBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncPhotoBackgroundView.swift; sourceTree = "<group>"; };
-		9AE8ED542E9F885700F6474E /* GooglePhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePhotosService.swift; sourceTree = "<group>"; };
+		9AE8ED5B2EA29CEB00F6474E /* LocalPhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPhotosService.swift; sourceTree = "<group>"; };
+		9AE8ED5D2EA29CFB00F6474E /* LocalPhotoBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPhotoBackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +81,8 @@
 		600606752A71D61200F49225 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9AE8ED542E9F885700F6474E /* GooglePhotosService.swift */,
 				600606782A71D6C300F49225 /* darkmode.swift */,
+				9AE8ED5B2EA29CEB00F6474E /* LocalPhotosService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -131,7 +131,7 @@
 			children = (
 				60A8683A2A72EB6800CED841 /* ThirdPage.swift */,
 				9AE8ED4A2E9F48B500F6474E /* SettingsView.swift */,
-				9AE8ED4C2E9F760500F6474E /* AsyncPhotoBackgroundView.swift */,
+				9AE8ED5D2EA29CFB00F6474E /* LocalPhotoBackgroundView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -221,13 +221,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				603324C02A6A11FE007288D9 /* ContentView.swift in Sources */,
+				9AE8ED5E2EA29CFB00F6474E /* LocalPhotoBackgroundView.swift in Sources */,
+				9AE8ED5C2EA29CEB00F6474E /* LocalPhotosService.swift in Sources */,
 				9AE8ED4B2E9F48B500F6474E /* SettingsView.swift in Sources */,
 				60A8683B2A72EB6800CED841 /* ThirdPage.swift in Sources */,
 				603798652A6C190500654BBA /* Fonts.swift in Sources */,
 				603324BE2A6A11FE007288D9 /* standbytimeApp.swift in Sources */,
 				600606792A71D6C300F49225 /* darkmode.swift in Sources */,
-				9AE8ED4D2E9F760500F6474E /* AsyncPhotoBackgroundView.swift in Sources */,
-				9AE8ED552E9F885700F6474E /* GooglePhotosService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
