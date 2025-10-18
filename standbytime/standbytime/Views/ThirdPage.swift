@@ -16,73 +16,76 @@ struct ThirdPage: View {
     @State private var backgroundImage: UIImage?
     @State private var showingSettings = false
     @StateObject private var localPhotosService = LocalPhotosService()
+    @State private var showingFullScreenPhoto = false
+    @State private var fullScreenImage: UIImage?
 
     var body: some View {
-        ZStack(alignment: .topTrailing) {
+        ZStack {
             if let image = backgroundImage {
                 LocalPhotoBackgroundView(uiImage: image)
             } else {
                 Color.black
                     .ignoresSafeArea()
             }
-            
-            Button(action: {
-                showingSettings.toggle()
-            }) {
-                Image(systemName: "gearshape.fill")
-                    .font(.title)
-                    .foregroundColor(.white)
+
+            // UI Elements
+            VStack {
+                // Top-right content
+                HStack {
+                    Spacer()
+                    VStack(alignment: .trailing, spacing: 0) {
+                        Text(getFormattedTime())
+                            .font(.custom("SquadaOne-Regular", size: 120))
+                            .foregroundColor(.white)
+                            .shadow(color: .black, radius: 5, x: 2, y: 2)
+
+                        HStack(spacing: 10) {
+                            Text(date.formatted(.dateTime.weekday()))
+                            Text(date.formatted(.dateTime.day()))
+                        }
+                        .font(.custom("SquadaOne-Regular", size: 40))
+                        .foregroundColor(.white)
+                        .shadow(color: .black, radius: 3, x: 1, y: 1)
+                    }
                     .padding()
-            }
-            
-            ZStack {
-                // time display
-                Text(getFormattedTime())
-                    .foregroundColor(Color("Green"))
-                    .padding(.leading, -130)
-                    .font(.custom(
-                        "SquadaOne-Regular",
-                        fixedSize: 250
-                    ))
-                    .scaleEffect(isBouncing ? 1.1 : 1.0)
+                }
                 
+                Spacer()
                 
-                // day display
-                Text(date.formatted(.dateTime.weekday()))
-                    .foregroundColor(Color("Green"))
-                    .font(.title)
-                    .padding(.top, -90)
-                    .padding(.leading, 450)
-                    .font(.custom(
-                        "SquadaOne-Regular",
-                        fixedSize: 250
-                    ))
-                
-                // day as number
-                Text(date.formatted(.dateTime.day()))
-                    .foregroundColor(.white)
-                    .font(.title)
-                    .padding(.top, -90)
-                    .padding(.leading, 550)
-                    .font(.custom(
-                        "SquadaOne-Regular",
-                        fixedSize: 250
-                    ))
-            }
-            .onAppear {
-                localPhotosService.requestAuthorization()
-                localPhotosService.fetchPhotoBatch()
-                setupTimers()
-            }
-            .onReceive(localPhotosService.$photoCache) { newCache in
-                if !newCache.isEmpty {
-                    self.updateBackgroundImage()
+                // Bottom-right content
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        showingSettings.toggle()
+                    }) {
+                        Image(systemName: "gearshape.fill")
+                            .font(.title)
+                            .foregroundColor(.white)
+                            .padding()
+                    }
                 }
             }
-            .sheet(isPresented: $showingSettings) {
-                SettingsView()
-                    .environmentObject(localPhotosService)
+            
+            if showingFullScreenPhoto, let image = fullScreenImage {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
             }
+        }
+        .onAppear {
+            localPhotosService.requestAuthorization()
+            localPhotosService.fetchPhotoBatch()
+            setupTimers()
+        }
+        .onReceive(localPhotosService.$photoCache) { newCache in
+            if !newCache.isEmpty {
+                self.updateBackgroundImage()
+            }
+        }
+        .sheet(isPresented: $showingSettings) {
+            SettingsView()
+                .environmentObject(localPhotosService)
         }
     }
 
@@ -111,6 +114,22 @@ struct ThirdPage: View {
             localPhotosService.fetchPhotoBatch()
         }
         RunLoop.current.add(batchTimer, forMode: .common)
+
+        // Timer for full-screen photo
+        let fullScreenPhotoTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
+            showFullScreenPhoto()
+        }
+        RunLoop.current.add(fullScreenPhotoTimer, forMode: .common)
+    }
+    
+    private func showFullScreenPhoto() {
+        fullScreenImage = localPhotosService.getRandomPhotoFromCache()
+        if fullScreenImage != nil {
+            showingFullScreenPhoto = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                showingFullScreenPhoto = false
+            }
+        }
     }
     
     private func updateBackgroundImage() {
