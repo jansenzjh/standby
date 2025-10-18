@@ -70,9 +70,14 @@ struct ThirdPage: View {
                     ))
             }
             .onAppear {
-                setupTimers()
                 localPhotosService.requestAuthorization()
-                fetchRandomPhoto()
+                localPhotosService.fetchPhotoBatch()
+                setupTimers()
+            }
+            .onReceive(localPhotosService.$photoCache) { newCache in
+                if !newCache.isEmpty {
+                    self.updateBackgroundImage()
+                }
             }
             .sheet(isPresented: $showingSettings) {
                 SettingsView()
@@ -97,19 +102,19 @@ struct ThirdPage: View {
         
         // Timer to shuffle background photo
         let photoTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
-            fetchRandomPhoto()
+            updateBackgroundImage()
         }
         RunLoop.current.add(photoTimer, forMode: .common)
+        
+        // Timer to fetch new batch of photos
+        let batchTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
+            localPhotosService.fetchPhotoBatch()
+        }
+        RunLoop.current.add(batchTimer, forMode: .common)
     }
     
-    private func fetchRandomPhoto() {
-        let userSelectedCategory = UserDefaults.standard.string(forKey: "selectedGooglePhotosCategory") ?? "Pets"
-        
-        localPhotosService.search(category: userSelectedCategory) { image in
-            DispatchQueue.main.async {
-                self.backgroundImage = image
-            }
-        }
+    private func updateBackgroundImage() {
+        self.backgroundImage = localPhotosService.getRandomPhotoFromCache()
     }
 }
 

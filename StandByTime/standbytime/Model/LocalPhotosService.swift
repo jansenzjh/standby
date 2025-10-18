@@ -2,9 +2,12 @@
 import Foundation
 import Photos
 import UIKit
+import Combine
 
 class LocalPhotosService: ObservableObject {
     @Published var isAuthorized = false
+    @Published var photoCache: [UIImage] = []
+    private var isFetching = false
 
     func requestAuthorization() {
         PHPhotoLibrary.requestAuthorization { status in
@@ -14,38 +17,49 @@ class LocalPhotosService: ObservableObject {
         }
     }
 
-    func search(category: String, completion: @escaping (UIImage?) -> Void) {
-        guard isAuthorized else {
-            print("Not authorized to access photo library.")
-            requestAuthorization()
-            completion(nil)
+    func getRandomPhotoFromCache() -> UIImage? {
+        return photoCache.randomElement()
+    }
+
+    func fetchPhotoBatch() {
+        guard isAuthorized, !isFetching else {
             return
         }
+
+        isFetching = true
+        var newPhotos: [UIImage] = []
 
         let assets = PHAsset.fetchAssets(with: .image, options: nil)
-
         guard assets.count > 0 else {
-            print("No photos found.")
-            completion(nil)
+            isFetching = false
             return
         }
 
-        let randomIndex = Int.random(in: 0..<assets.count)
-        let asset = assets.object(at: randomIndex)
+        let group = DispatchGroup()
+        let imageManager = PHImageManager.default()
+        let requestOptions = PHImageRequestOptions()
+        requestOptions.deliveryMode = .highQualityFormat
+        requestOptions.isNetworkAccessAllowed = true
 
-        let manager = PHImageManager.default()
-        let options = PHImageRequestOptions()
-        options.isSynchronous = false
-        options.deliveryMode = .highQualityFormat
-        options.isNetworkAccessAllowed = true
+        let scale = UIScreen.main.scale
+        let targetSize = CGSize(width: UIScreen.main.bounds.width * scale, height: UIScreen.main.bounds.height * scale)
 
-        manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: options) { image, info in
-            if let error = info?[PHImageErrorKey] as? Error {
-                print("Error requesting image: \(error.localizedDescription)")
-                completion(nil)
-            } else {
-                completion(image)
+        for _ in 0..<10 {
+            let randomIndex = Int.random(in: 0..<assets.count)
+            let asset = assets.object(at: randomIndex)
+
+            group.enter()
+            imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: requestOptions) { image, info in
+                if let image = image {
+                    newPhotos.append(image)
+                }
+                group.leave()
             }
+        }
+
+        group.notify(queue: .main) {
+            self.photoCache = newPhotos
+            self.isFetching = false
         }
     }
 }
