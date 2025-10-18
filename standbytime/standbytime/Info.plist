@@ -8,13 +8,9 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.640030307833-f9h7ckttv10k2le6a41ajbp75q9msb33</string>
-			</array>
+			<array/>
 		</dict>
 	</array>
-	<key>GIDClientID</key>
-	<string>640030307833-f9h7ckttv10k2le6a41ajbp75q9msb33.apps.googleusercontent.com</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>LilitaOne-Regular.ttf</string>
