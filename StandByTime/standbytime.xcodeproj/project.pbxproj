@@ -22,10 +22,12 @@
 		60A8683B2A72EB6800CED841 /* ThirdPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A8683A2A72EB6800CED841 /* ThirdPage.swift */; };
 		60A8683D2A72F79200CED841 /* SquadaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60A8683C2A72F79200CED841 /* SquadaOne-Regular.ttf */; };
 		9AE8ED4B2E9F48B500F6474E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED4A2E9F48B500F6474E /* SettingsView.swift */; };
-		9AE8ED582E9F8C2300F6474E /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 9AE8ED572E9F8C2300F6474E /* GoogleSignIn */; };
-		9AE8ED5A2E9F8C2300F6474E /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9AE8ED592E9F8C2300F6474E /* GoogleSignInSwift */; };
 		9AE8ED5C2EA29CEB00F6474E /* LocalPhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED5B2EA29CEB00F6474E /* LocalPhotosService.swift */; };
 		9AE8ED5E2EA29CFB00F6474E /* LocalPhotoBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED5D2EA29CFB00F6474E /* LocalPhotoBackgroundView.swift */; };
+		9AE8ED602EA3196B00F6474E /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED5F2EA3196B00F6474E /* WeatherView.swift */; };
+		9AE8ED642EA384E700F6474E /* OpenWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED632EA384E700F6474E /* OpenWeatherService.swift */; };
+		9AE8ED672EA385DF00F6474E /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED652EA385DF00F6474E /* LocationService.swift */; };
+		9AE8ED682EA385DF00F6474E /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED662EA385DF00F6474E /* WeatherService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,10 @@
 		9AE8ED4A2E9F48B500F6474E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9AE8ED5B2EA29CEB00F6474E /* LocalPhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPhotosService.swift; sourceTree = "<group>"; };
 		9AE8ED5D2EA29CFB00F6474E /* LocalPhotoBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPhotoBackgroundView.swift; sourceTree = "<group>"; };
+		9AE8ED5F2EA3196B00F6474E /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		9AE8ED632EA384E700F6474E /* OpenWeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherService.swift; sourceTree = "<group>"; };
+		9AE8ED652EA385DF00F6474E /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		9AE8ED662EA385DF00F6474E /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +61,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE8ED582E9F8C2300F6474E /* GoogleSignIn in Frameworks */,
-				9AE8ED5A2E9F8C2300F6474E /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,7 +85,10 @@
 		600606752A71D61200F49225 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9AE8ED652EA385DF00F6474E /* LocationService.swift */,
+				9AE8ED662EA385DF00F6474E /* WeatherService.swift */,
 				600606782A71D6C300F49225 /* darkmode.swift */,
+				9AE8ED632EA384E700F6474E /* OpenWeatherService.swift */,
 				9AE8ED5B2EA29CEB00F6474E /* LocalPhotosService.swift */,
 			);
 			path = Model;
@@ -132,6 +139,7 @@
 				60A8683A2A72EB6800CED841 /* ThirdPage.swift */,
 				9AE8ED4A2E9F48B500F6474E /* SettingsView.swift */,
 				9AE8ED5D2EA29CFB00F6474E /* LocalPhotoBackgroundView.swift */,
+				9AE8ED5F2EA3196B00F6474E /* WeatherView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -153,8 +161,6 @@
 			);
 			name = standbytime;
 			packageProductDependencies = (
-				9AE8ED572E9F8C2300F6474E /* GoogleSignIn */,
-				9AE8ED592E9F8C2300F6474E /* GoogleSignInSwift */,
 			);
 			productName = standbytime;
 			productReference = 603324BA2A6A11FE007288D9 /* standbytime.app */;
@@ -185,7 +191,6 @@
 			);
 			mainGroup = 603324B12A6A11FE007288D9;
 			packageReferences = (
-				9AE8ED562E9F8C2300F6474E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 603324BB2A6A11FE007288D9 /* Products */;
 			projectDirPath = "";
@@ -222,10 +227,14 @@
 			files = (
 				603324C02A6A11FE007288D9 /* ContentView.swift in Sources */,
 				9AE8ED5E2EA29CFB00F6474E /* LocalPhotoBackgroundView.swift in Sources */,
+				9AE8ED642EA384E700F6474E /* OpenWeatherService.swift in Sources */,
 				9AE8ED5C2EA29CEB00F6474E /* LocalPhotosService.swift in Sources */,
 				9AE8ED4B2E9F48B500F6474E /* SettingsView.swift in Sources */,
 				60A8683B2A72EB6800CED841 /* ThirdPage.swift in Sources */,
 				603798652A6C190500654BBA /* Fonts.swift in Sources */,
+				9AE8ED672EA385DF00F6474E /* LocationService.swift in Sources */,
+				9AE8ED682EA385DF00F6474E /* WeatherService.swift in Sources */,
+				9AE8ED602EA3196B00F6474E /* WeatherView.swift in Sources */,
 				603324BE2A6A11FE007288D9 /* standbytimeApp.swift in Sources */,
 				600606792A71D6C300F49225 /* darkmode.swift in Sources */,
 			);
@@ -373,7 +382,7 @@
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -383,9 +392,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jz.standby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -415,7 +425,7 @@
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -425,9 +435,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jz.standby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -456,30 +467,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		9AE8ED562E9F8C2300F6474E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		9AE8ED572E9F8C2300F6474E /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9AE8ED562E9F8C2300F6474E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignIn;
-		};
-		9AE8ED592E9F8C2300F6474E /* GoogleSignInSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9AE8ED562E9F8C2300F6474E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignInSwift;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 603324B22A6A11FE007288D9 /* Project object */;
 }
