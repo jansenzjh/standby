@@ -44,7 +44,7 @@ class LocalPhotosService: ObservableObject {
         let scale = UIScreen.main.scale
         let targetSize = CGSize(width: UIScreen.main.bounds.width * scale, height: UIScreen.main.bounds.height * scale)
 
-        for _ in 0..<10 {
+        for _ in 0..<20 {
             let randomIndex = Int.random(in: 0..<assets.count)
             let asset = assets.object(at: randomIndex)
 

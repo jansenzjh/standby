@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ThirdPage: View {
 
@@ -18,6 +19,8 @@ struct ThirdPage: View {
     @StateObject private var localPhotosService = LocalPhotosService()
     @State private var showingFullScreenPhoto = false
     @State private var fullScreenImage: UIImage?
+    @StateObject private var weatherService = WeatherService()
+    @StateObject private var locationService = LocationService()
 
     var body: some View {
         ZStack {
@@ -52,8 +55,17 @@ struct ThirdPage: View {
                 
                 Spacer()
                 
-                // Bottom-right content
+                // Bottom content
                 HStack {
+                    if let weather = weatherService.weatherResponse {
+                        WeatherView(weather: weather)
+                            .foregroundColor(.white)
+                            .shadow(color: .black, radius: 3, x: 1, y: 1)
+                            .padding()
+                    } else {
+                        ProgressView().tint(.white)
+                            .padding()
+                    }
                     Spacer()
                     Button(action: {
                         showingSettings.toggle()
@@ -76,12 +88,21 @@ struct ThirdPage: View {
         .onAppear {
             localPhotosService.requestAuthorization()
             localPhotosService.fetchPhotoBatch()
+            locationService.requestLocation()
             setupTimers()
         }
         .onReceive(localPhotosService.$photoCache) { newCache in
             if !newCache.isEmpty {
                 self.updateBackgroundImage()
             }
+        }
+        .onChange(of: locationService.location) { newLocation in
+            if let location = newLocation {
+                weatherService.startFetchingWeather(for: location)
+            }
+        }
+        .onDisappear {
+            weatherService.stopFetchingWeather()
         }
         .sheet(isPresented: $showingSettings) {
             SettingsView()
@@ -104,13 +125,13 @@ struct ThirdPage: View {
         RunLoop.current.add(clockTimer, forMode: .common)
         
         // Timer to shuffle background photo
-        let photoTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
+        let photoTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
             updateBackgroundImage()
         }
         RunLoop.current.add(photoTimer, forMode: .common)
         
         // Timer to fetch new batch of photos
-        let batchTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
+        let batchTimer = Timer.scheduledTimer(withTimeInterval: 120, repeats: true) { _ in
             localPhotosService.fetchPhotoBatch()
         }
         RunLoop.current.add(batchTimer, forMode: .common)
