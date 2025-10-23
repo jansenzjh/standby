@@ -30,6 +30,7 @@
 		9AE8ED682EA385DF00F6474E /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED662EA385DF00F6474E /* WeatherService.swift */; };
 		9AE8ED6A2EA9268B00F6474E /* DailyForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED692EA9268B00F6474E /* DailyForecast.swift */; };
 		9AE8ED6C2EA926A300F6474E /* DailyForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED6B2EA926A300F6474E /* DailyForecastView.swift */; };
+		9AE8ED702EAA607700F6474E /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AE8ED6F2EAA607700F6474E /* Secrets.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		9AE8ED662EA385DF00F6474E /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		9AE8ED692EA9268B00F6474E /* DailyForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecast.swift; sourceTree = "<group>"; };
 		9AE8ED6B2EA926A300F6474E /* DailyForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastView.swift; sourceTree = "<group>"; };
+		9AE8ED6F2EAA607700F6474E /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				600606752A71D61200F49225 /* Model */,
 				6000DA9D2A6ADCAE00652244 /* Fonts */,
 				6000DA9A2A6ADA2500652244 /* Info.plist */,
+				9AE8ED6F2EAA607700F6474E /* Secrets.plist */,
 				603324BD2A6A11FE007288D9 /* standbytimeApp.swift */,
 				603324BF2A6A11FE007288D9 /* ContentView.swift */,
 				603324C12A6A11FE007288D9 /* Assets.xcassets */,
@@ -218,6 +221,7 @@
 				602DF6AE2A6C216D007AB134 /* RubikMoonrocks-Regular.ttf in Resources */,
 				60A8683D2A72F79200CED841 /* SquadaOne-Regular.ttf in Resources */,
 				603324C52A6A11FE007288D9 /* Preview Assets.xcassets in Resources */,
+				9AE8ED702EAA607700F6474E /* Secrets.plist in Resources */,
 				602DF6AC2A6C20DC007AB134 /* BungeeShade-Regular.ttf in Resources */,
 				603798632A6C18C300654BBA /* LilitaOne-Regular.ttf in Resources */,
 				603324C22A6A11FE007288D9 /* Assets.xcassets in Resources */,

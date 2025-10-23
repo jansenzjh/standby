@@ -45,11 +45,20 @@ struct Wind: Decodable {
 // MARK: - OpenWeatherService
 
 class OpenWeatherService {
-    private let apiKey = "YOUR_API_KEY" // TODO: Replace with your OpenWeatherMap API key
+    private func apiKey() -> String {
+        guard let url = Bundle.main.url(forResource: "Secrets", withExtension: "plist"),
+              let data = try? Data(contentsOf: url),
+              let plist = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any],
+              let key = plist["APIKey"] as? String else {
+            fatalError("API Key not found in Secrets.plist or is invalid.")
+        }
+        return key
+    }
+
     private let baseURL = "https://api.openweathermap.org/data/2.5/"
 
     func fetchWeather(for location: CLLocation) async throws -> WeatherResponse {
-        let urlString = "\(baseURL)weather?lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&appid=\(apiKey)&units=metric"
+        let urlString = "\(baseURL)weather?lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&appid=\(apiKey())&units=metric"
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
@@ -63,7 +72,7 @@ class OpenWeatherService {
     }
     
     func fetchForecast(for location: CLLocation) async throws -> [DailyForecast] {
-        let urlString = "\(baseURL)forecast?lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&appid=\(apiKey)&units=metric"
+        let urlString = "\(baseURL)forecast?lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&appid=\(apiKey())&units=metric"
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
