@@ -8,9 +8,14 @@ The purpose of this app is to replace an Amazon Echo display, which has been sho
 
 ## App Description
 
-This app is a personalized digital photo frame that displays photos, the current date and time, and weather information.
+This app is a personalized digital photo frame that displays photos from your library, the current date and time, and live weather information.
 
-To prevent screen burn-in from static UI elements like the clock's comma or the settings gear icon, the app will display a full-screen photo at a regular interval. This ensures that the pixels on the screen are changing and helps to preserve the life of the display.
+To prevent screen burn-in from static UI elements, the app will display a full-screen 4-day weather forecast at a regular interval (every 60 seconds for 15 seconds). This ensures that the pixels on the screen are changing and helps to preserve the life of the display, while also providing useful information.
+
+## Screenshots
+
+![Screenshot 1](screenshot/iphone_screenshot1.png)
+![Screenshot 2](screenshot/iphone_screenshot2.png)
 
 ## Setup
 
