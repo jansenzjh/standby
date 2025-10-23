@@ -77,4 +77,5 @@ iOSInjectionProject/
 # Consider using environment variables or a separate configuration file that is gitignored.
 # For example:
 # .env
-# secrets.plist
+Secrets.plist
+secrets.plist

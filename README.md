@@ -21,12 +21,19 @@ To prevent screen burn-in from static UI elements, the app will display a full-s
 
 To use the weather feature, you will need to add your own OpenWeatherMap API key. You can get a free API key by signing up on the [OpenWeatherMap website](https://openweathermap.org/appid).
 
-Once you have your API key, you will need to add it to the following file:
+Once you have your API key, create a new file named `Secrets.plist` in the `StandByTime/standbytime/` directory.
 
-`StandByTime/standbytime/Model/OpenWeatherService.swift`
+Add your API key to this file with the following structure:
 
-Open this file and replace the placeholder text with your API key:
-
-```swift
-private let apiKey = "YOUR_API_KEY" // TODO: Replace with your OpenWeatherMap API key
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>APIKey</key>
+    <string>YOUR_API_KEY</string>
+</dict>
+</plist>
 ```
+
+Replace `YOUR_API_KEY` with your actual OpenWeatherMap API key.
