@@ -28,6 +28,8 @@
 		9AE8ED642EA384E700F6474E /* OpenWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED632EA384E700F6474E /* OpenWeatherService.swift */; };
 		9AE8ED672EA385DF00F6474E /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED652EA385DF00F6474E /* LocationService.swift */; };
 		9AE8ED682EA385DF00F6474E /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED662EA385DF00F6474E /* WeatherService.swift */; };
+		9AE8ED6A2EA9268B00F6474E /* DailyForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED692EA9268B00F6474E /* DailyForecast.swift */; };
+		9AE8ED6C2EA926A300F6474E /* DailyForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8ED6B2EA926A300F6474E /* DailyForecastView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		9AE8ED632EA384E700F6474E /* OpenWeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherService.swift; sourceTree = "<group>"; };
 		9AE8ED652EA385DF00F6474E /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		9AE8ED662EA385DF00F6474E /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		9AE8ED692EA9268B00F6474E /* DailyForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecast.swift; sourceTree = "<group>"; };
+		9AE8ED6B2EA926A300F6474E /* DailyForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 		600606752A71D61200F49225 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9AE8ED692EA9268B00F6474E /* DailyForecast.swift */,
 				9AE8ED652EA385DF00F6474E /* LocationService.swift */,
 				9AE8ED662EA385DF00F6474E /* WeatherService.swift */,
 				600606782A71D6C300F49225 /* darkmode.swift */,
@@ -136,6 +141,7 @@
 		60A868372A72EB0400CED841 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9AE8ED6B2EA926A300F6474E /* DailyForecastView.swift */,
 				60A8683A2A72EB6800CED841 /* ThirdPage.swift */,
 				9AE8ED4A2E9F48B500F6474E /* SettingsView.swift */,
 				9AE8ED5D2EA29CFB00F6474E /* LocalPhotoBackgroundView.swift */,
@@ -226,7 +232,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				603324C02A6A11FE007288D9 /* ContentView.swift in Sources */,
+				9AE8ED6C2EA926A300F6474E /* DailyForecastView.swift in Sources */,
 				9AE8ED5E2EA29CFB00F6474E /* LocalPhotoBackgroundView.swift in Sources */,
+				9AE8ED6A2EA9268B00F6474E /* DailyForecast.swift in Sources */,
 				9AE8ED642EA384E700F6474E /* OpenWeatherService.swift in Sources */,
 				9AE8ED5C2EA29CEB00F6474E /* LocalPhotosService.swift in Sources */,
 				9AE8ED4B2E9F48B500F6474E /* SettingsView.swift in Sources */,

@@ -4,6 +4,7 @@ import CoreLocation
 @MainActor
 class WeatherService: ObservableObject {
     @Published var weatherResponse: WeatherResponse?
+    @Published var dailyForecasts: [DailyForecast] = []
     private let openWeatherService = OpenWeatherService()
     private var timer: Timer?
     private var lastLocation: CLLocation?
@@ -13,6 +14,7 @@ class WeatherService: ObservableObject {
         // Fetch weather immediately
         Task {
             await fetchWeather(for: location)
+            await fetchForecast(for: location)
         }
 
         // And then every 30 minutes
@@ -20,6 +22,7 @@ class WeatherService: ObservableObject {
             guard let self = self, let location = self.lastLocation else { return }
             Task {
                 await self.fetchWeather(for: location)
+                await self.fetchForecast(for: location)
             }
         }
     }
@@ -35,6 +38,15 @@ class WeatherService: ObservableObject {
             self.weatherResponse = weatherResponse
         } catch {
             print("Failed to fetch weather: \(error.localizedDescription)")
+        }
+    }
+    
+    func fetchForecast(for location: CLLocation) async {
+        do {
+            let forecasts = try await openWeatherService.fetchForecast(for: location)
+            self.dailyForecasts = forecasts
+        } catch {
+            print("Failed to fetch forecast: \(error.localizedDescription)")
         }
     }
 }
